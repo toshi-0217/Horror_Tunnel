@@ -47,7 +47,7 @@ public class GhostComing : MonoBehaviour
 
     IEnumerator ghostcome()
     {
-        yield return new WaitForSeconds(60f);
+        yield return new WaitForSeconds(90f);
         while(true)
         {
             if(r.Next(0,1000) < chance)

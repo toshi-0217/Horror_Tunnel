@@ -3,7 +3,7 @@ using UnityEngine;
 public class syokakimove : MonoBehaviour
 {
     public GameObject syokaki;
-    public int chance = 10;
+    public int chance = 40;
     private System.Random r = new System.Random();
     private Rigidbody rigi;
     private bool hasTriggered = false;

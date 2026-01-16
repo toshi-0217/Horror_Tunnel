@@ -42,7 +42,7 @@ public class sandstorm : MonoBehaviour
     IEnumerator screenSandStorm()
     {
         int rand;
-        yield return new WaitForSeconds(60f);
+        yield return new WaitForSeconds(70f);
         while (true)
         {
             rand = r.Next(0,1000);
