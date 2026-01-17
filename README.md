@@ -51,13 +51,17 @@ script: Assets/scripts/jumpscare/Light
 ※主に音で怖がらせる演出のため、gifではなく、最後に動画形式でまとめています。
 
 script: Assets/scripts/jumpscare/Door
+
 #### J-03:叫び声
+
 トンネル全体に響き渡る叫び声が聞こえてきます。
 
 ※主に音で怖がらせる演出のため、gifではなく、最後に動画形式でまとめています。
 
 script: Assets/scripts/jumpscare/shout
+
 #### J-04:消火器
+
 消火器が死角から突然倒れてきます。
 
 消火器のプレハブに当たり判定となるcolliderの子オブジェクトを付けて、プレイヤーが当たり判定に触れることで乱数生成を行い、消火器を倒すかどうかを決めています。
@@ -65,7 +69,9 @@ script: Assets/scripts/jumpscare/shout
 script: Assets/scripts/jumpscare/syokaki
 
 <img src="./readmesource/gif/syokaki.gif" width="50%"/>
+
 #### J-05:工事中
+
 道路工事の標識とカラーコーンでトンネルの右側しか通れなくなっています。右側を通って進もうとすると、工事標識が倒れてきます。
 
 発生原理は消火器と同様colliderを使っていますが、トンネル生成の時で標識とカラーコーンのオブジェクトを生成するかどうかを抽選して決めるため、消火器とは違いこれらのプレハブがインスタンス化された時点で演出の発生が確定します。
@@ -79,6 +85,7 @@ script: Assets/scripts/jumpscare/plate_crush
 script: Assets/scripts/jumpscare/anaunce
 
 #### J-07:ノイズ
+
 画面全体に壊れたテレビのようなノイズが発生します。一定時間経過すると収まります。
 
 実装に関しては、URPに標準搭載されているポストプロセスのGlobal Volumeを使用し、ノイズ、画面フィルターをスクリプトで制御しました。今までVolumeをあまり使ったことがなかったのですが、使ってみるととても便利だったため、これを機に今回使わなかった他の要素も利用したいと思いました。
@@ -86,7 +93,9 @@ script: Assets/scripts/jumpscare/anaunce
 script: Assets/scripts/jumpscare/noise
 
 <img src="./readmesource/gif/noise.gif" width="50%"/>
+
 #### J-08:赤いノイズ
+
 画面全体が赤くなり、ノイズのようなものと不気味な笑い声が響き渡ります。一定時間経過すると収まりますが、最後に謎の存在から「逃がさない」とささやかれます。
 
 通常のノイズと同様、Global Volumeを利用しました。また、ノイズテクスチャは自身で作成した男性の3Dモデルの顔面の画像を使用しています。心霊的な不可解さを通常のノイズよりも出したいと思い、砂嵐ではなく怖い画像を取り入れました。
@@ -102,7 +111,9 @@ script: Assets/scripts/jumpscare/noise
 script: Assets/scripts/jumpscare/Doll
 
 <img src="./readmesource/gif/doll.gif" width="50%"/>
+
 #### J-10:横たわる男
+
 大量の医療用ベッドや車いすと、ベッドに横たわるスーツ姿の男性が出現します。男性に近づくとうめき声を発します。
 
 
@@ -110,7 +121,9 @@ script: Assets/scripts/jumpscare/Doll
 script: Assets/scripts/jumpscare/sararyman
 
 <img src="./readmesource/gif/man.gif" width="50%"/>
+
 #### J-11:幽霊
+
 歩いていると突如ノイズと共に前方に長髪の女性のようななにかが出現します。一定時間近づくと消え、「だーれだ」とささやいてきます。
 
 script: Assets/scripts/jumpscare/Ghost
