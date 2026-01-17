@@ -23,7 +23,7 @@
 ### 3.1 Scene
 Sceneは「start」,「maingame」,「clear」の3つで構成されています。すべてのSceneは、Asset/Scenesに置いてあります。
 #### 3.1.1 startシーン
-ゲームのスタート画面となるシーンです。Terrainとprobuilderを用いてトンネルと山を作り背景を作りました。startボタンを押すとmaingameへ遷移します。
+ゲームのスタート画面となるシーンです。Terrainとprobuilderを用いて背景を作りました。startボタンを押すとmaingameへ遷移します。
 
 <img src="./readmesource/gif/titlemenu.gif" width="50%"/>
 
