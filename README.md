@@ -34,7 +34,21 @@ clearメッセージを表示させるシーンです。表示が終わると自
 
 <img src="./readmesource/gif/goal.gif" width="50%"/>
 
-### 3.2 scripts (ホラー演出)
+### 3.2 トンネル生成
+
+トンネルの長さはランダムで決まります(何セグメントつなげるかを決める)。具体的には、トンネルの1セグメント分のPrehabをインスタンス化してつなげることで実装しています。きれいにつなげるために、ひとつ前のセグメントの終わりのｚ座標を取得しておき、その座標に合わせて次のセグメントをインスタンス化します。また、セグメントは通常、ホラー演出1、ホラー演出2、ゴールの4種類あり、ゴールはトンネルの最後に必ず生成されます。ホラー演出用のセグメントは、初期確率として、1％の確率でどちらかが生成されます。後述するホラー演出と同様、確率は抽選が外れる度に上昇していきます。
+
+トンネル生成のスクリプト: Asset/scripts/Object_Instance/Tunnel_Generate.cs
+
+### 3.3 プレイヤー操作
+
+プレイヤー操作にはUnityのInput Actionを利用し、キーボードとマウスでの操作方法を実装しました。
+
+Input Actionは複数の入力デバイスでの操作を統一的に入力管理システムで、現在のpcゲームではキーボード・マウスだけでなくコントローラー操作にも対応できたり、スマートフォンとのクロスプレイも対応しているものも多いため複数入力デバイス操作の統一管理はゲーム開発において必須級だと考え、Input Actionを利用しました。
+
+プレイヤ操作のスクリプト: Asset/scripts/Player/playermove.cs
+
+### 3.4 scripts (ホラー演出)
 ホラー演出に関するスクリプトは、Asset/scripts/jumpscareに置いてあります。
 
 全ての演出はそれぞれが持つ確率で発生します。抽選して発生しなかった場合、次の抽選が行うまでのインターバルもそれぞれ固有の秒数を持っています。また、ホラーゲームとして飽きにくくなるような工夫として、抽選が外れると発生確率が上昇し、抽選が当たり演出が発生すると確率が0に下がります。そのため、すべての演出が発生しやすく、同じ演出が連続で発生しにくくなるように実装しました。
@@ -42,7 +56,9 @@ clearメッセージを表示させるシーンです。表示が終わると自
 #### J-01:停電
 トンネル内の照明が突然すべて停電します。暫くすると復旧します。
 
-script: Assets/scripts/jumpscare/Light
+実装にはオブザーバーパターンという設計を利用しています。司令塔となるスクリプト(LightManager.cs)と実行役となるスクリプト(LightController.cs)の二つで構成されています。トンネルセグメントがインスタンス化された時、そのトンネル内にある照明のオブジェクトにアタッチされているメソッドをイベントとして登録しておき、.invoke()を発動することでイベントを一斉に実行する形で実装しました。
+
+script: Assets/scripts/jumpscare/Light内の複数の.csファイル
 
 <img src="./readmesource/gif/Lightdown.gif" width="50%"/>
 
@@ -50,9 +66,13 @@ script: Assets/scripts/jumpscare/Light
 
 非常ドアからドアをたたく音が聞こえてきます。ドアとプレイヤーが一定距離近づくとノック音が鳴る仕組みとなっています。音源が4種類あり、ランダムな順で鳴るようになっています。
 
+確率管理にはScriptable Objectを用いてインスタンス元のオブジェクトのパラメータを操作することで確率の増減を実装しました。
+
 ※主に音で怖がらせる演出のため、gifではなく、最後に動画形式でまとめています。
 
-script: Assets/scripts/jumpscare/Door
+script: Assets/scripts/jumpscare/Door/DoorKnock.cs
+
+Scriptable Object: Assets/scripts/system/scriptable object/door_occur
 
 #### J-03:叫び声
 
@@ -60,7 +80,7 @@ script: Assets/scripts/jumpscare/Door
 
 ※主に音で怖がらせる演出のため、gifではなく、最後に動画形式でまとめています。
 
-script: Assets/scripts/jumpscare/shout
+script: Assets/scripts/jumpscare/shout/sakebigoe.cs
 
 #### J-04:消火器
 
@@ -68,7 +88,11 @@ script: Assets/scripts/jumpscare/shout
 
 消火器のプレハブに当たり判定となるcolliderの子オブジェクトを付けて、プレイヤーが当たり判定に触れることで乱数生成を行い、消火器を倒すかどうかを決めています。
 
-script: Assets/scripts/jumpscare/syokaki
+ドアのノック音と同様、確率管理にはScriptable Objectを用いてインスタンス元のオブジェクトのパラメータを操作することで確率の増減を実装しました。
+
+script: Assets/scripts/jumpscare/syokaki/syokakimove.cs
+
+Scriptable Object: Assets/scripts/system/scriptable object/syokaki_occur
 
 <img src="./readmesource/gif/syokaki.gif" width="50%"/>
 
@@ -78,7 +102,7 @@ script: Assets/scripts/jumpscare/syokaki
 
 発生原理は消火器と同様colliderを使っていますが、トンネル生成の時で標識とカラーコーンのオブジェクトを生成するかどうかを抽選して決めるため、消火器とは違いこれらのプレハブがインスタンス化された時点で演出の発生が確定します。
 
-script: Assets/scripts/jumpscare/plate_crush
+script: Assets/scripts/jumpscare/plate_crush/SighFall.cs
 
 <img src="./readmesource/gif/platebreak.gif" width="50%"/>
 
@@ -90,7 +114,7 @@ script: Assets/scripts/jumpscare/plate_crush
 
 ※主に音で怖がらせる演出のため、gifではなく、最後に動画形式でまとめています。
 
-script: Assets/scripts/jumpscare/anaunce
+script: Assets/scripts/jumpscare/anaunce/anaunce_01.cs
 
 #### J-07:ノイズ
 
@@ -98,7 +122,7 @@ script: Assets/scripts/jumpscare/anaunce
 
 実装に関しては、URPに標準搭載されているポストプロセスのGlobal Volumeを使用し、ノイズ、画面フィルターをスクリプトで制御しました。今までVolumeをあまり使ったことがなかったのですが、使ってみるととても便利だったため、これを機に今回使わなかった他の要素も利用したいと思いました。
 
-script: Assets/scripts/jumpscare/noise
+script: Assets/scripts/jumpscare/noise/sandstorm.cs
 
 <img src="./readmesource/gif/noise.gif" width="50%"/>
 
@@ -108,7 +132,7 @@ script: Assets/scripts/jumpscare/noise
 
 通常のノイズと同様、Global Volumeを利用しました。また、ノイズテクスチャは自身で作成した男性の3Dモデルの顔面の画像を使用しています。心霊的な不可解さを通常のノイズよりも出したいと思い、砂嵐ではなく怖い画像を取り入れました。
 
-script: Assets/scripts/jumpscare/noise
+script: Assets/scripts/jumpscare/noise/sandstorm.cs
 
 <img src="./readmesource/gif/rednoise.gif" width="50%"/>
 
@@ -118,7 +142,7 @@ script: Assets/scripts/jumpscare/noise
 
 人形の手前にcolliderの当たり判定を設置して、プレイヤが触れることで発生します。ジャンプスケアは、非アクティブのCanvasをスクリプトでアクティブにすることで画面全体に日本人形の怖い画像を表示させています。
 
-script: Assets/scripts/jumpscare/Doll
+script: Assets/scripts/jumpscare/Doll内の複数.csファイル
 
 <img src="./readmesource/gif/doll.gif" width="50%"/>
 
@@ -128,7 +152,7 @@ script: Assets/scripts/jumpscare/Doll
 
 車いす・医療用ベッドはAsset Storeのものを利用しています。人形等と同様、colliderの当たり判定を用いています。
 
-script: Assets/scripts/jumpscare/sararyman
+script: Assets/scripts/jumpscare/sararyman/sararyman_voice.cs
 
 <img src="./readmesource/gif/man.gif" width="50%"/>
 
@@ -138,7 +162,7 @@ script: Assets/scripts/jumpscare/sararyman
 
 Global Volumeでノイズ、画面フィルター、レンズエフェクト、発光をスクリプトで制御しました。また、発生時にプレイヤーの操作をできないようにして、前方に幽霊のPrehabとプレイヤーがお互いを見つめあうようにしました。
 
-script: Assets/scripts/jumpscare/Ghost
+script: Assets/scripts/jumpscare/Ghost/GhostComing.cs
 
 <img src="./readmesource/gif/Ghost.gif" width="50%"/>
 
