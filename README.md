@@ -22,6 +22,7 @@ Sceneは「start」,「maingame」,「clear」の3つで構成されています
 ゲームのスタート画面となるシーンです。Terrainとprobuilderを用いてトンネルと山を作り背景を作りました。startボタンを押すとmaingameへ遷移します。
 #### 3.1.2 maingameシーン
 実際にプレイするゲーム画面のシーンです。薄暗いトンネル内をプレイヤーは脱出を目指して徘徊します。さまざまなホラー演出が不定期で出現します。演出に関しては3.2で紹介します。トンネルの出口へ到達するとclearへ遷移します。
+![maingamestart](./readmesource/gif/start.gif)
 #### 3.1.3 clearシーン
 clearメッセージを表示させるシーンです。表示が終わると自動的にstartシーンへと遷移します。
 ### 3.2 scripts (ホラー演出)
