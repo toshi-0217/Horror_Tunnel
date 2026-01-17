@@ -2,21 +2,18 @@ using UnityEngine;
 using System.Collections;
 using System.Collections.Generic;
 using System;
-using System.Runtime.CompilerServices;
-using UnityEngine.Video; // Listのために追加
 public class DoorKnock : MonoBehaviour
 {
     public Transform Player;
     public Transform Door;
+    public occurconfig config;
 
     public System.Random r = new System.Random();
     private int knock_rnd;
     public float waitInterval = 3f;
 
-    public int knockchance = 10;
-
+    //public int knockchance = 10;
     private List<AudioSource> knocks = new List<AudioSource>();
-
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
@@ -25,9 +22,16 @@ public class DoorKnock : MonoBehaviour
         {
             knocks.Add(l);
         }
-        if(knocks.Count > 0 && r.Next(0,1000) < knockchance)
+        if(knocks.Count > 0 && r.Next(0,1000) < config.probability)
         {
+            config.ResetProbability();
+            //Debug.Log($"Reset:{Door.transform.position.z}");
             StartCoroutine(DoorKnocks());
+        }
+        else
+        {
+            config.AddProbability(); 
+            //Debug.Log("Add");
         }
     }
 
@@ -46,7 +50,7 @@ public class DoorKnock : MonoBehaviour
             {
                 flag = 1;
             }
-            if (flag == 1 && Math.Abs(Player.position.z - Door.position.z) < 200)
+            if (flag == 1)
             {
                 playknocks();
             }
@@ -62,4 +66,3 @@ public class DoorKnock : MonoBehaviour
     }
 
 }
-

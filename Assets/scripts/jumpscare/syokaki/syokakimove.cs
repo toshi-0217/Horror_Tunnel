@@ -4,6 +4,7 @@ public class syokakimove : MonoBehaviour
 {
     public GameObject syokaki;
     public int chance = 40;
+    public syokaki_occur config;
     private System.Random r = new System.Random();
     private Rigidbody rigi;
     private bool hasTriggered = false;
@@ -15,10 +16,17 @@ public class syokakimove : MonoBehaviour
     {
         if(other.CompareTag("Player") && !hasTriggered)
         {
-            if(r.Next(0,1000) < chance)
+            if(r.Next(0,1000) < config.probability)
             {
                 rigi = syokaki.GetComponent<Rigidbody>();
+                config.ResetProbability();
+                Debug.Log("reset");
                 smash();       
+            }
+            else
+            {
+                config.AddProbability();
+                Debug.Log("add");
             }
         }
     }
