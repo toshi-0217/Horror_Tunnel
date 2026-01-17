@@ -166,3 +166,25 @@ script: Assets/scripts/jumpscare/Ghost/GhostComing.cs
 
 <img src="./readmesource/gif/Ghost.gif" width="50%"/>
 
+## 4．Prehab
+Prehabはblender4.4を用いて自身で作成したものと、AssetStoreから無料のものをダウンロードしたものを利用しています。
+
+自身で作成したPrehabは、Asset/My assetsの中に置いてあります。以下のものを作成しました。
+- 非常ドア
+- 非常電源装置
+- 非常警報器
+- 消火器
+- 工事標識
+- 交通規制用のコーンとポール
+- 換気ファン
+- 日本人形
+- スーツを着た男性
+- 女性の幽霊
+  
+ダウンロードしたAssetは、Asset/import assetsの中に置いてあります。利用したAssetは以下の通りです(一部利用)。
+- Street Lights Pack 01
+- Asset pack for horror game
+- Kajaman's Roads - Free
+- Grass Flowers Pack Free
+- Conifers [BOTD]
+- Terrain Textures Pack Free
