@@ -16,6 +16,9 @@
 - **3Dモデル・テクスチャ** : Blender4.4(自作Prehab)、一部AssetStoreのものを利用（Terrain用テクスチャ・木のPrehab等）
 - **Platform** : PC(Windows)
 - **音声** : VOICE VOX、その他フリー音源サイトから利用(使用させていただいた素材のサイトは最後に記載しています)
+
+※Git管理は個人開発のため行いませんでした。
+
 ## 3．ゲームシステム
 ### 3.1 Scene
 Sceneは「start」,「maingame」,「clear」の3つで構成されています。すべてのSceneは、Asset/Scenesに置いてあります。
@@ -188,3 +191,23 @@ Prehabはblender4.4を用いて自身で作成したものと、AssetStoreから
 - Grass Flowers Pack Free
 - Conifers [BOTD]
 - Terrain Textures Pack Free
+
+## 5．使用したフリー素材サイト
+
+使用させていただいたフリー素材サイトは以下の通りです。
+
+### 音声サイト
+
+- ![ぴたちー素材館](http://www.vita-chi.net/sec/voi/hora/voivoi1.htm)
+- ![On-Jin ～音人～](https://on-jin.com/kiyaku.php)
+- ![効果音工房](https://umipla.com/horror)
+- ![VSQplus](https://vsq.co.jp/plus/)
+- ![効果音ラボ](https://soundeffect-lab.info/)
+- ![無料効果音で遊ぼう！](https://taira-komori.net/index.html)
+
+### テクスチャ・画像
+
+- ![illust AC](https://www.ac-illust.com/main/detail.php?id=2081242&word=%E3%83%8E%E3%82%A4%E3%82%BA#goog_rewarded)
+- ![BEIZ images](https://www.beiz.jp/%E7%B4%A0%E6%9D%90/%E5%B2%A9/00133.html)
+- ![Photo-AC](https://www.photo-ac.com/)
+- ![いらすと屋](https://www.irasutoya.com/)
