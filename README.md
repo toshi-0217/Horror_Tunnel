@@ -79,7 +79,9 @@ script: Assets/scripts/jumpscare/syokaki
 script: Assets/scripts/jumpscare/plate_crush
 
 <img src="./readmesource/gif/platebreak.gif" width="50%"/>
+
 #### J-06:非常アナウンス
+
 突然緊急放送が聞こえてきます。内容は、「トンネル内に子供が迷い込んでいるため、見つけ次第処分してほしい」というものです。
 
 script: Assets/scripts/jumpscare/anaunce
