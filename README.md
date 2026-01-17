@@ -15,9 +15,9 @@
 - **Render Pipeline** : URP(Universal Render Pipeline)
 - **3Dモデル・テクスチャ** : Blender4.4(自作Prehab)、一部AssetStoreのものを利用（Terrain用テクスチャ・木のPrehab等）
 - **Platform** : PC(Windows)
-## 3．Asset構成
+## 3．ゲームシステム
 ### 3.1 Scene
-Sceneは「start」,「maingame」,「clear」の3つで構成されています。
+Sceneは「start」,「maingame」,「clear」の3つで構成されています。すべてのSceneは、Asset/Scenesに置いてあります。
 #### 3.1.1 startシーン
 ゲームのスタート画面となるシーンです。Terrainとprobuilderを用いてトンネルと山を作り背景を作りました。startボタンを押すとmaingameへ遷移します。
 
@@ -34,6 +34,9 @@ clearメッセージを表示させるシーンです。表示が終わると自
 <img src="./readmesource/gif/goal.gif" width="50%"/>
 
 ### 3.2 scripts (ホラー演出)
+ホラー演出に関するスクリプトは、Asset/scripts/jumpscareに置いてあります。
+
+全ての演出はそれぞれが持つ確率で発生します。抽選して発生しなかった場合、次の抽選が行うまでのインターバルもそれぞれ固有の秒数を持っています。また、ホラーゲームとして飽きにくくなるような工夫として、抽選が外れると発生確率が上昇し、抽選が当たり演出が発生すると確率が0に下がります。そのため、すべての演出が発生しやすく、同じ演出が連続で発生しにくくなるように実装しました。
 #### J-01:停電
 トンネル内の照明が突然すべて停電します。暫くすると復旧します。
 
@@ -41,21 +44,29 @@ script: Assets/scripts/jumpscare/Light
 
 <img src="./readmesource/gif/Lightdown.gif" width="50%"/>
 #### J-02:ノック音
-非常ドアからドアをたたく音が聞こえてきます。
+非常ドアからドアをたたく音が聞こえてきます。ドアとプレイヤーが一定距離近づくとノック音が鳴る仕組みとなっています。音源が4種類あり、ランダムな順で鳴るようになっています。
+
+※主に音で怖がらせる演出のため、gifではなく、最後に動画形式でまとめています。
 
 script: Assets/scripts/jumpscare/Door
 #### J-03:叫び声
 トンネル全体に響き渡る叫び声が聞こえてきます。
 
+※主に音で怖がらせる演出のため、gifではなく、最後に動画形式でまとめています。
+
 script: Assets/scripts/jumpscare/shout
 #### J-04:消火器
 消火器が死角から突然倒れてきます。
+
+消火器のプレハブに当たり判定となるcolliderの子オブジェクトを付けて、プレイヤーが当たり判定に触れることで乱数生成を行い、消火器を倒すかどうかを決めています。
 
 script: Assets/scripts/jumpscare/syokaki
 
 <img src="./readmesource/gif/syokaki.gif" width="50%"/>
 #### J-05:工事中
 道路工事の標識とカラーコーンでトンネルの右側しか通れなくなっています。右側を通って進もうとすると、工事標識が倒れてきます。
+
+発生原理は消火器と同様colliderを使っていますが、トンネル生成の時で標識とカラーコーンのオブジェクトを生成するかどうかを抽選して決めるため、消火器とは違いこれらのプレハブがインスタンス化された時点で演出の発生が確定します。
 
 script: Assets/scripts/jumpscare/plate_crush
 
@@ -68,11 +79,15 @@ script: Assets/scripts/jumpscare/anaunce
 #### J-07:ノイズ
 画面全体に壊れたテレビのようなノイズが発生します。一定時間経過すると収まります。
 
+実装に関しては、URPに標準搭載されているポストプロセスのGlobal Volumeを使用し、ノイズ、画面フィルターをスクリプトで制御しました。今までVolumeをあまり使ったことがなかったのですが、使ってみるととても便利だったため、これを機に今回使わなかった他の要素も利用したいと思いました。
+
 script: Assets/scripts/jumpscare/noise
 
 <img src="./readmesource/gif/noise.gif" width="50%"/>
 #### J-08:赤いノイズ
 画面全体が赤くなり、ノイズのようなものと不気味な笑い声が響き渡ります。一定時間経過すると収まりますが、最後に謎の存在から「逃がさない」とささやかれます。
+
+通常のノイズと同様、Global Volumeを利用しました。また、ノイズテクスチャは自身で作成した男性の3Dモデルの顔面の画像を使用しています。心霊的な不可解さを通常のノイズよりも出したいと思い、砂嵐ではなく怖い画像を取り入れました。
 
 script: Assets/scripts/jumpscare/noise
 
@@ -80,11 +95,15 @@ script: Assets/scripts/jumpscare/noise
 #### J-09:泣く人形
 歩いていると突然前方に鳴き声を発する日本人形が出現します。一定距離近づくと画面全体にジャンプスケアが発生します。
 
+人形の手前にcolliderの当たり判定を設置して、プレイヤが触れることで発生します。ジャンプスケアは、非アクティブのCanvasをスクリプトでアクティブにすることで画面全体に日本人形の怖い画像を表示させています。
+
 script: Assets/scripts/jumpscare/Doll
 
 <img src="./readmesource/gif/doll.gif" width="50%"/>
 #### J-10:横たわる男
 大量の医療用ベッドや車いすと、ベッドに横たわるスーツ姿の男性が出現します。男性に近づくとうめき声を発します。
+
+
 
 script: Assets/scripts/jumpscare/sararyman
 
