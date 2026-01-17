@@ -122,7 +122,9 @@ script: Assets/scripts/jumpscare/plate_crush/SighFall.cs
 
 アナウンスの音声は女性で陰鬱な声質のものにしたいと考え探していた結果、VOICE VOXの「九州そら」というキャラクターのものを利用しました。
 
-※主に音で怖がらせる演出のため、gifではなく、最後に動画形式でまとめています。
+実装は単純な確率抽選で行っています。コルーチンの待機時間が他の演出と被らないようにしました。
+
+※動画サイズが大きいため載せることができませんでした。
 
 script: Assets/scripts/jumpscare/anaunce/anaunce_01.cs
 
@@ -170,7 +172,7 @@ script: Assets/scripts/jumpscare/sararyman/sararyman_voice.cs
 
 歩いていると突如ノイズと共に前方に長髪の女性のようななにかが出現します。一定時間近づくと消え、「だーれだ」とささやいてきます。
 
-Global Volumeでノイズ、画面フィルター、レンズエフェクト、発光をスクリプトで制御しました。また、発生時にプレイヤーの操作をできないようにして、前方に幽霊のPrehabとプレイヤーがお互いを見つめあうようにしました。
+Global Volumeでノイズ、画面フィルター、レンズエフェクト、発光をスクリプトで制御しました。また、発生時にプレイヤーの操作をできないようにして、前方に幽霊のPrehabとプレイヤーがお互いを見つめあうように実装しました。
 
 script: Assets/scripts/jumpscare/Ghost/GhostComing.cs
 
