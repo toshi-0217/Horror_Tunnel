@@ -13,6 +13,7 @@
 - **Engine** : Unity 6000.2.7f2
 - **言語** : C#
 - **Render Pipeline** : URP(Universal Render Pipeline)
+- **エディタ** : Visual Studio Code
 - **3Dモデル・テクスチャ** : Blender4.4(自作Prehab)、一部AssetStoreのものを利用（Terrain用テクスチャ・木のPrehab等）
 - **Platform** : PC(Windows)
 - **音声** : VOICE VOX、その他フリー音源サイトから利用(使用させていただいた素材のサイトは最後に記載しています)
