@@ -36,34 +36,63 @@ clearメッセージを表示させるシーンです。表示が終わると自
 ### 3.2 scripts (ホラー演出)
 #### J-01:停電
 トンネル内の照明が突然すべて停電します。暫くすると復旧します。
+
 script: Assets/scripts/jumpscare/Light
+
+<img src="./readmesource/gif/Lightdown.gif" width="50%"/>
 #### J-02:ノック音
 非常ドアからドアをたたく音が聞こえてきます。
+
 script: Assets/scripts/jumpscare/Door
 #### J-03:叫び声
 トンネル全体に響き渡る叫び声が聞こえてきます。
+
 script: Assets/scripts/jumpscare/shout
 #### J-04:消火器
 消火器が死角から突然倒れてきます。
+
 script: Assets/scripts/jumpscare/syokaki
+
+<img src="./readmesource/gif/syokaki.gif" width="50%"/>
 #### J-05:工事中
 道路工事の標識とカラーコーンでトンネルの右側しか通れなくなっています。右側を通って進もうとすると、工事標識が倒れてきます。
+
 script: Assets/scripts/jumpscare/plate_crush
+
+<img src="./readmesource/gif/platebreak.gif" width="50%"/>
 #### J-06:非常アナウンス
 突然緊急放送が聞こえてきます。内容は、「トンネル内に子供が迷い込んでいるため、見つけ次第処分してほしい」というものです。
+
 script: Assets/scripts/jumpscare/anaunce
+
 #### J-07:ノイズ
 画面全体に壊れたテレビのようなノイズが発生します。一定時間経過すると収まります。
+
 script: Assets/scripts/jumpscare/noise
+
+<img src="./readmesource/gif/noise.gif" width="50%"/>
 #### J-08:赤いノイズ
 画面全体が赤くなり、ノイズのようなものと不気味な笑い声が響き渡ります。一定時間経過すると収まりますが、最後に謎の存在から「逃がさない」とささやかれます。
+
 script: Assets/scripts/jumpscare/noise
+
+<img src="./readmesource/gif/rednoise.gif" width="50%"/>
 #### J-09:泣く人形
 歩いていると突然前方に鳴き声を発する日本人形が出現します。一定距離近づくと画面全体にジャンプスケアが発生します。
+
 script: Assets/scripts/jumpscare/Doll
+
+<img src="./readmesource/gif/doll.gif" width="50%"/>
 #### J-10:横たわる男
 大量の医療用ベッドや車いすと、ベッドに横たわるスーツ姿の男性が出現します。男性に近づくとうめき声を発します。
+
 script: Assets/scripts/jumpscare/sararyman
+
+<img src="./readmesource/gif/man.gif" width="50%"/>
 #### J-11:幽霊
 歩いていると突如ノイズと共に前方に長髪の女性のようななにかが出現します。一定時間近づくと消え、「だーれだ」とささやいてきます。
+
 script: Assets/scripts/jumpscare/Ghost
+
+<img src="./readmesource/gif/Ghost.gif" width="50%"/>
+
