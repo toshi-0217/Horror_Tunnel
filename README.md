@@ -71,7 +71,7 @@ script: Assets/scripts/jumpscare/Light内の複数の.csファイル
 
 確率管理にはScriptable Objectを用いてインスタンス元のオブジェクトのパラメータを操作することで確率の増減を実装しました。
 
-※主に音で怖がらせる演出のため、gifではなく、最後に動画形式でまとめています。
+https://github.com/user-attachments/assets/7c875604-03a6-417d-9b99-a2841a2fd459
 
 script: Assets/scripts/jumpscare/Door/DoorKnock.cs
 
@@ -81,7 +81,7 @@ Scriptable Object: Assets/scripts/system/scriptable object/door_occur
 
 トンネル全体に響き渡る叫び声が聞こえてきます。
 
-※主に音で怖がらせる演出のため、gifではなく、最後に動画形式でまとめています。
+https://github.com/user-attachments/assets/789a4994-afa4-4e34-be54-0a4ed8337af4
 
 script: Assets/scripts/jumpscare/shout/sakebigoe.cs
 
