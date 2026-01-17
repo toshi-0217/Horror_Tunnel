@@ -15,6 +15,7 @@
 - **Render Pipeline** : URP(Universal Render Pipeline)
 - **3Dモデル・テクスチャ** : Blender4.4(自作Prehab)、一部AssetStoreのものを利用（Terrain用テクスチャ・木のPrehab等）
 - **Platform** : PC(Windows)
+- **音声** : VOICE VOX、その他フリー音源サイトから利用(使用させていただいた素材のサイトは最後に記載しています)
 ## 3．ゲームシステム
 ### 3.1 Scene
 Sceneは「start」,「maingame」,「clear」の3つで構成されています。すべてのSceneは、Asset/Scenesに置いてあります。
@@ -37,6 +38,7 @@ clearメッセージを表示させるシーンです。表示が終わると自
 ホラー演出に関するスクリプトは、Asset/scripts/jumpscareに置いてあります。
 
 全ての演出はそれぞれが持つ確率で発生します。抽選して発生しなかった場合、次の抽選が行うまでのインターバルもそれぞれ固有の秒数を持っています。また、ホラーゲームとして飽きにくくなるような工夫として、抽選が外れると発生確率が上昇し、抽選が当たり演出が発生すると確率が0に下がります。そのため、すべての演出が発生しやすく、同じ演出が連続で発生しにくくなるように実装しました。
+
 #### J-01:停電
 トンネル内の照明が突然すべて停電します。暫くすると復旧します。
 
@@ -82,7 +84,11 @@ script: Assets/scripts/jumpscare/plate_crush
 
 #### J-06:非常アナウンス
 
-突然緊急放送が聞こえてきます。内容は、「トンネル内に子供が迷い込んでいるため、見つけ次第処分してほしい」というものです。
+突然緊急放送が流れてきます。内容は、「トンネル内に子供が迷い込んでいるため、見つけ次第処分してほしい」というものです。
+
+アナウンスの音声は女性で陰鬱な声質のものにしたいと考え探していた結果、VOICE VOXの「九州そら」というキャラクターのものを利用しました。
+
+※主に音で怖がらせる演出のため、gifではなく、最後に動画形式でまとめています。
 
 script: Assets/scripts/jumpscare/anaunce
 
@@ -105,7 +111,9 @@ script: Assets/scripts/jumpscare/noise
 script: Assets/scripts/jumpscare/noise
 
 <img src="./readmesource/gif/rednoise.gif" width="50%"/>
+
 #### J-09:泣く人形
+
 歩いていると突然前方に鳴き声を発する日本人形が出現します。一定距離近づくと画面全体にジャンプスケアが発生します。
 
 人形の手前にcolliderの当たり判定を設置して、プレイヤが触れることで発生します。ジャンプスケアは、非アクティブのCanvasをスクリプトでアクティブにすることで画面全体に日本人形の怖い画像を表示させています。
@@ -118,7 +126,7 @@ script: Assets/scripts/jumpscare/Doll
 
 大量の医療用ベッドや車いすと、ベッドに横たわるスーツ姿の男性が出現します。男性に近づくとうめき声を発します。
 
-
+車いす・医療用ベッドはAsset Storeのものを利用しています。人形等と同様、colliderの当たり判定を用いています。
 
 script: Assets/scripts/jumpscare/sararyman
 
@@ -127,6 +135,8 @@ script: Assets/scripts/jumpscare/sararyman
 #### J-11:幽霊
 
 歩いていると突如ノイズと共に前方に長髪の女性のようななにかが出現します。一定時間近づくと消え、「だーれだ」とささやいてきます。
+
+Global Volumeでノイズ、画面フィルター、レンズエフェクト、発光をスクリプトで制御しました。また、発生時にプレイヤーの操作をできないようにして、前方に幽霊のPrehabとプレイヤーがお互いを見つめあうようにしました。
 
 script: Assets/scripts/jumpscare/Ghost
 
