@@ -25,6 +25,7 @@ Sceneは「start」,「maingame」,「clear」の3つで構成されています
 <img src="./readmesource/gif/start.gif" width="50%"/>
 #### 3.1.3 clearシーン
 clearメッセージを表示させるシーンです。表示が終わると自動的にstartシーンへと遷移します。
+<img src="./readmesource/gif/goal.gif" width="50%"/>
 ### 3.2 scripts (ホラー演出)
 #### J-01:停電
 トンネル内の照明が突然すべて停電します。暫くすると復旧します。
